@@ -22,7 +22,8 @@ const navLinks = {
 };
 
 const cta = { he: "הזמינו תור", en: "Book Now" };
-const phone = "050-000-0000";
+const phone = "053-393-1443";
+const phoneTel = "+972533931443";
 
 interface NavigationProps {
   lang: Lang;
@@ -96,7 +97,7 @@ export default function Navigation({ lang, onLangToggle }: NavigationProps) {
 
               {/* Phone */}
               <a
-                href={`tel:${phone.replace(/-/g, "")}`}
+                href={`tel:${phoneTel}`}
                 className="flex items-center gap-1.5 text-sm text-[#708090] hover:text-[#B2AC88] transition-colors"
                 style={{ fontFamily: "Montserrat, sans-serif" }}
               >

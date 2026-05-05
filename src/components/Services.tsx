@@ -9,12 +9,15 @@ type Lang = "he" | "en";
 interface Service {
   id: string;
   icon: React.ReactNode;
-  title: string;
+  titleHe: string;
+  titleEn: string;
   tag: string;
-  description: string;
+  descriptionHe: string;
+  descriptionEn: string;
   duration: string;
   price: string;
-  benefits: string[];
+  benefitsHe: string[];
+  benefitsEn: string[];
   popular?: boolean;
 }
 
@@ -22,36 +25,48 @@ const services: Service[] = [
   {
     id: "deep-tissue",
     icon: <Zap size={22} />,
-    title: "Deep Tissue",
-    tag: "עיסוי עמוק",
-    description:
+    titleHe: "עיסוי עמוק",
+    titleEn: "Deep Tissue",
+    tag: "Deep Tissue",
+    descriptionHe:
       "טיפול ממוקד בשכבות העמוקות של רקמת השריר. אידיאלי לכאבים כרוניים, מתח שרירי ועיצוב הגוף.",
-    duration: "60 / 90 דקות",
+    descriptionEn:
+      "Targeted treatment of deep muscle layers. Ideal for chronic pain, muscle tension, and body sculpting.",
+    duration: "60 / 90 דק׳",
     price: "₪380 / ₪520",
-    benefits: ["שחרור מתח עמוק", "שיפור גמישות", "הפחתת כאבי גב"],
+    benefitsHe: ["שחרור מתח עמוק", "שיפור גמישות", "הפחתת כאבי גב"],
+    benefitsEn: ["Deep tension release", "Improved flexibility", "Back pain relief"],
     popular: true,
   },
   {
     id: "swedish",
     icon: <Leaf size={22} />,
-    title: "Swedish",
-    tag: "עיסוי שוודי",
-    description:
+    titleHe: "עיסוי שוודי",
+    titleEn: "Swedish",
+    tag: "Swedish",
+    descriptionHe:
       "הטכניקה הקלאסית המבוססת על תנועות זורמות ומרגיעות. מושלמת להרפיה מלאה, שיפור מחזור הדם ואיזון מחדש.",
-    duration: "60 / 90 דקות",
+    descriptionEn:
+      "The classic technique based on flowing, soothing strokes. Perfect for full relaxation, improved circulation, and full body reset.",
+    duration: "60 / 90 דק׳",
     price: "₪320 / ₪450",
-    benefits: ["הרפיה מלאה", "שיפור מחזור דם", "הפחתת חרדה"],
+    benefitsHe: ["הרפיה מלאה", "שיפור מחזור דם", "הפחתת חרדה"],
+    benefitsEn: ["Full relaxation", "Better circulation", "Anxiety reduction"],
   },
   {
     id: "sports",
     icon: <Trophy size={22} />,
-    title: "Sports",
-    tag: "עיסוי ספורט",
-    description:
+    titleHe: "עיסוי ספורט",
+    titleEn: "Sports Massage",
+    tag: "Sports",
+    descriptionHe:
       "פרוטוקול טיפולי מותאם לספורטאים ואנשים פעילים. ממריץ לפני אימון, מאיץ התאוששות לאחריו.",
-    duration: "45 / 75 דקות",
+    descriptionEn:
+      "A therapeutic protocol tailored for athletes and active people. Energising before training, accelerating recovery after.",
+    duration: "45 / 75 דק׳",
     price: "₪290 / ₪420",
-    benefits: ["מניעת פציעות", "האצת התאוששות", "שיפור ביצועים"],
+    benefitsHe: ["מניעת פציעות", "האצת התאוששות", "שיפור ביצועים"],
+    benefitsEn: ["Injury prevention", "Faster recovery", "Performance boost"],
   },
 ];
 
@@ -59,7 +74,7 @@ const sectionCopy = {
   he: {
     eyebrow: "מה אנחנו מציעים",
     heading: "טיפולים מותאמים\nבדיוק לכם",
-    sub: "כל טיפול מתוכנן בקפידה על-ידי המטפל שלנו בהתאם לצרכים ייחודיים שלכם.",
+    sub: "כל טיפול מתוכנן בקפידה על-ידי המטפל שלנו בהתאם לצרכים הייחודיים שלכם.",
     cta: "בחרו טיפול זה",
     popular: "הכי פופולרי",
   },
@@ -120,6 +135,11 @@ export default function Services({ lang }: ServicesProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {services.map((service, i) => {
             const isActive = selected === service.id;
+            const title = lang === "he" ? service.titleHe : service.titleEn;
+            const description =
+              lang === "he" ? service.descriptionHe : service.descriptionEn;
+            const benefits =
+              lang === "he" ? service.benefitsHe : service.benefitsEn;
 
             return (
               <motion.div
@@ -138,7 +158,9 @@ export default function Services({ lang }: ServicesProps) {
                 {/* Popular badge */}
                 {service.popular && (
                   <div
-                    className={`absolute top-4 ${isRtl ? "left-4" : "right-4"} px-3 py-1 rounded-full text-xs font-bold text-white z-10`}
+                    className={`absolute top-4 ${
+                      isRtl ? "left-4" : "right-4"
+                    } px-3 py-1 rounded-full text-xs font-bold text-white z-10`}
                     style={{
                       background: "linear-gradient(135deg, #B2AC88, #9A9470)",
                       fontFamily: "Montserrat, sans-serif",
@@ -184,7 +206,7 @@ export default function Services({ lang }: ServicesProps) {
                     className="text-2xl font-bold text-[#2C2C2C] mb-3"
                     style={{ fontFamily: "Frank Ruhl Libre, serif" }}
                   >
-                    {service.title}
+                    {title}
                   </h3>
 
                   {/* Description */}
@@ -192,7 +214,7 @@ export default function Services({ lang }: ServicesProps) {
                     className="text-[#708090] text-sm leading-relaxed mb-5"
                     style={{ fontFamily: "Assistant, sans-serif" }}
                   >
-                    {service.description}
+                    {description}
                   </p>
 
                   {/* Benefits */}
@@ -201,7 +223,7 @@ export default function Services({ lang }: ServicesProps) {
                       isRtl ? "items-end" : "items-start"
                     }`}
                   >
-                    {service.benefits.map((b) => (
+                    {benefits.map((b) => (
                       <li
                         key={b}
                         className={`flex items-center gap-2 text-xs text-[#708090] ${

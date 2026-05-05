@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Star, ChevronLeft } from "lucide-react";
 
@@ -148,7 +149,7 @@ export default function Hero({ lang }: HeroProps) {
                   />
                 </a>
                 <a
-                  href="tel:0500000000"
+                  href="tel:+972533931443"
                   className="flex items-center justify-center px-8 py-4 rounded-full text-sm font-medium text-[#708090] border border-[#B2AC88]/50 hover:border-[#B2AC88] hover:bg-[#B2AC88]/5 transition-all duration-200"
                   style={{ fontFamily: "Montserrat, sans-serif" }}
                 >
@@ -224,34 +225,14 @@ export default function Hero({ lang }: HeroProps) {
             />
 
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
-              {/* Placeholder gradient */}
-              <div
-                className="w-full h-full flex flex-col items-center justify-center gap-4"
-                style={{
-                  background:
-                    "linear-gradient(160deg, #E8E4D0 0%, #D4D0B8 40%, #B2AC88 100%)",
-                }}
-              >
-                <svg
-                  width="120"
-                  height="120"
-                  viewBox="0 0 120 120"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="opacity-40"
-                >
-                  <ellipse cx="60" cy="50" rx="30" ry="18" fill="white" />
-                  <ellipse cx="60" cy="70" rx="38" ry="22" fill="white" opacity="0.6" />
-                  <ellipse cx="60" cy="88" rx="45" ry="20" fill="white" opacity="0.3" />
-                  <circle cx="60" cy="30" r="12" fill="white" opacity="0.5" />
-                </svg>
-                <p
-                  className="text-white/60 text-xs font-medium tracking-widest uppercase"
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
-                >
-                  Therapeutic Image
-                </p>
-              </div>
+              <Image
+                src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=800&q=80"
+                alt="Professional massage therapy session"
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
 
               {/* Floating availability card */}
               <motion.div
