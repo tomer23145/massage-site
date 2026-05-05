@@ -9,14 +9,14 @@ type Lang = "he" | "en";
 const navLinks = {
   he: [
     { label: "שירותים", href: "#services" },
-    { label: "הזמנת תור", href: "#booking" },
     { label: "המלצות", href: "#testimonials" },
+    { label: "הזמנת תור", href: "#contact" },
     { label: "צור קשר", href: "#contact" },
   ],
   en: [
     { label: "Services", href: "#services" },
-    { label: "Book Now", href: "#booking" },
     { label: "Reviews", href: "#testimonials" },
+    { label: "Book Now", href: "#contact" },
     { label: "Contact", href: "#contact" },
   ],
 };
@@ -49,7 +49,7 @@ export default function Navigation({ lang, onLangToggle }: NavigationProps) {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-          scrolled ? "glass shadow-sm py-3" : "py-5 bg-transparent"
+          scrolled ? "glass shadow-sm py-2" : "py-3 bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -107,7 +107,7 @@ export default function Navigation({ lang, onLangToggle }: NavigationProps) {
 
               {/* CTA */}
               <a
-                href="#booking"
+                href="#contact"
                 className="px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-all duration-200 hover:opacity-90 hover:shadow-md active:scale-95"
                 style={{
                   background: "linear-gradient(135deg, #B2AC88 0%, #9A9470 100%)",
@@ -155,7 +155,7 @@ export default function Navigation({ lang, onLangToggle }: NavigationProps) {
               ))}
               <div className="px-6 py-4 flex items-center justify-between">
                 <a
-                  href="#booking"
+                  href="#contact"
                   onClick={() => setMobileOpen(false)}
                   className="flex-1 text-center px-5 py-3 rounded-full text-sm font-semibold text-white"
                   style={{

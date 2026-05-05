@@ -91,7 +91,7 @@ export default function Testimonials({ lang }: TestimonialsProps) {
   const isRtl = lang === "he";
 
   return (
-    <section id="testimonials" className="py-24 bg-[#F0EDE0] relative">
+    <section id="testimonials" className="py-12 bg-[#F0EDE0] relative">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#B2AC88]/30 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -100,7 +100,7 @@ export default function Testimonials({ lang }: TestimonialsProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.65, ease }}
-          className={`mb-14 ${isRtl ? "text-right" : "text-left"}`}
+          className={`mb-8 ${isRtl ? "text-right" : "text-left"}`}
         >
           <span
             className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[#708090] border border-[#B2AC88]/40 bg-[#FAFAF5] mb-4"

@@ -8,7 +8,7 @@ type Lang = "he" | "en";
 
 const copy = {
   he: {
-    eyebrow: "מרפאת עיסוי מקצועית · ישראל",
+    eyebrow: "מרפאת עיסוי מקצועית · נתניה",
     headline: "מגע מקצועי שמרפא\nאת הגוף והנפש",
     sub: "טיפולים מותאמים אישית המשלבים טכניקות מתקדמות עם חוויה שקטה ומחזירה אנרגיה.",
     cta: "הזמינו תור עכשיו",
@@ -16,12 +16,12 @@ const copy = {
     reviewCount: "מעל 150 ביקורות",
     reviewLabel: "לקוחות מרוצים",
     badge: "זמינות מלאה השבוע",
-    nextSlot: "הטיפול הבא הזמין",
-    nextTime: "היום, 14:00–15:00",
-    bookBtn: "הזמן",
+    ribbonTime: "היום, 14:00–15:00",
+    ribbonLabel: "הטיפול הבא הזמין",
+    ribbonCta: "הזמן עכשיו",
   },
   en: {
-    eyebrow: "Professional Massage Clinic · Israel",
+    eyebrow: "Professional Massage Clinic · Netanya",
     headline: "Expert Touch That\nHeals Body & Mind",
     sub: "Personalised treatments combining advanced techniques with a peaceful, restorative experience.",
     cta: "Book Your Session",
@@ -29,9 +29,9 @@ const copy = {
     reviewCount: "150+ Reviews",
     reviewLabel: "Happy Clients",
     badge: "Full availability this week",
-    nextSlot: "Next available slot",
-    nextTime: "Today, 14:00–15:00",
-    bookBtn: "Book",
+    ribbonTime: "Today, 14:00–15:00",
+    ribbonLabel: "Next available slot",
+    ribbonCta: "Book Now",
   },
 };
 
@@ -48,9 +48,9 @@ function FadeUp({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease, delay }}
+      transition={{ duration: 0.6, ease, delay }}
       className={className}
     >
       {children}
@@ -67,8 +67,8 @@ export default function Hero({ lang }: HeroProps) {
   const isRtl = lang === "he";
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#FAFAF5]">
-      {/* Subtle background glow */}
+    <section className="relative min-h-[72vh] lg:max-h-[80vh] flex items-center overflow-hidden bg-[#FAFAF5]">
+      {/* Background glow */}
       <div
         className="absolute inset-0 opacity-30 pointer-events-none"
         style={{
@@ -77,9 +77,9 @@ export default function Hero({ lang }: HeroProps) {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20 pb-8">
         <div
-          className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
+          className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${
             isRtl ? "lg:grid-flow-dense" : ""
           }`}
         >
@@ -92,7 +92,7 @@ export default function Hero({ lang }: HeroProps) {
             }`}
           >
             {/* Eyebrow */}
-            <FadeUp delay={0.1} className="mb-5">
+            <FadeUp delay={0.08} className="mb-3">
               <span
                 className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[#708090] border border-[#B2AC88]/40 bg-white/70"
                 style={{ fontFamily: "Montserrat, sans-serif" }}
@@ -102,9 +102,9 @@ export default function Hero({ lang }: HeroProps) {
             </FadeUp>
 
             {/* Headline */}
-            <FadeUp delay={0.22}>
+            <FadeUp delay={0.18}>
               <h1
-                className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.08] mb-6"
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.08] mb-3"
                 style={{
                   fontFamily: "Frank Ruhl Libre, serif",
                   color: "#2C2C2C",
@@ -115,10 +115,42 @@ export default function Hero({ lang }: HeroProps) {
               </h1>
             </FadeUp>
 
+            {/* Booking ribbon — replaces the floating card on the image */}
+            <FadeUp delay={0.26} className="mb-4">
+              <a
+                href="#contact"
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 transition-colors duration-200 ${
+                  isRtl ? "flex-row-reverse" : ""
+                }`}
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
+                <span
+                  className="text-xs font-semibold text-emerald-800"
+                  style={{ fontFamily: "Montserrat, sans-serif" }}
+                >
+                  {t.ribbonLabel}
+                </span>
+                <span className="text-emerald-300 text-xs select-none">·</span>
+                <span
+                  className="text-xs font-bold text-emerald-700 tabular-nums"
+                  style={{ fontFamily: "Montserrat, sans-serif" }}
+                >
+                  {t.ribbonTime}
+                </span>
+                <span className="text-emerald-300 text-xs select-none">→</span>
+                <span
+                  className="text-xs font-bold text-[#9A9470]"
+                  style={{ fontFamily: "Montserrat, sans-serif" }}
+                >
+                  {t.ribbonCta}
+                </span>
+              </a>
+            </FadeUp>
+
             {/* Sub-headline */}
             <FadeUp delay={0.34}>
               <p
-                className="text-lg text-[#708090] leading-relaxed mb-8 max-w-lg"
+                className="text-base text-[#708090] leading-relaxed mb-5 max-w-md"
                 style={{ fontFamily: "Assistant, sans-serif" }}
               >
                 {t.sub}
@@ -126,15 +158,15 @@ export default function Hero({ lang }: HeroProps) {
             </FadeUp>
 
             {/* CTAs */}
-            <FadeUp delay={0.44} className="w-full mb-10">
+            <FadeUp delay={0.42} className="w-full mb-6">
               <div
                 className={`flex flex-col sm:flex-row gap-3 ${
                   isRtl ? "sm:flex-row-reverse" : ""
                 }`}
               >
                 <a
-                  href="#booking"
-                  className="group flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white font-semibold text-base transition-all duration-200 hover:opacity-90 hover:shadow-lg hover:-translate-y-0.5 active:scale-95"
+                  href="#contact"
+                  className="group flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-white font-semibold text-sm transition-all duration-200 hover:opacity-90 hover:shadow-lg hover:-translate-y-0.5 active:scale-95"
                   style={{
                     background: "linear-gradient(135deg, #B2AC88 0%, #9A9470 100%)",
                     fontFamily: "Montserrat, sans-serif",
@@ -142,7 +174,7 @@ export default function Hero({ lang }: HeroProps) {
                 >
                   {t.cta}
                   <ChevronLeft
-                    size={18}
+                    size={16}
                     className={`transition-transform duration-200 group-hover:-translate-x-0.5 ${
                       !isRtl ? "rotate-180" : ""
                     }`}
@@ -150,7 +182,7 @@ export default function Hero({ lang }: HeroProps) {
                 </a>
                 <a
                   href="tel:+972533931443"
-                  className="flex items-center justify-center px-8 py-4 rounded-full text-sm font-medium text-[#708090] border border-[#B2AC88]/50 hover:border-[#B2AC88] hover:bg-[#B2AC88]/5 transition-all duration-200"
+                  className="flex items-center justify-center px-7 py-3.5 rounded-full text-sm font-medium text-[#708090] border border-[#B2AC88]/50 hover:border-[#B2AC88] hover:bg-[#B2AC88]/5 transition-all duration-200"
                   style={{ fontFamily: "Montserrat, sans-serif" }}
                 >
                   {t.ctaSub}
@@ -159,16 +191,16 @@ export default function Hero({ lang }: HeroProps) {
             </FadeUp>
 
             {/* Social proof bar */}
-            <FadeUp delay={0.55}>
+            <FadeUp delay={0.5}>
               <div
-                className={`flex items-center gap-5 flex-wrap ${
+                className={`flex items-center gap-4 flex-wrap ${
                   isRtl ? "flex-row-reverse" : ""
                 }`}
               >
-                <div className={`flex items-center gap-2 ${isRtl ? "flex-row-reverse" : ""}`}>
+                <div className={`flex items-center gap-1.5 ${isRtl ? "flex-row-reverse" : ""}`}>
                   <div className="flex gap-0.5">
                     {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} size={17} fill="#B2AC88" stroke="none" />
+                      <Star key={i} size={15} fill="#B2AC88" stroke="none" />
                     ))}
                   </div>
                   <span
@@ -179,11 +211,11 @@ export default function Hero({ lang }: HeroProps) {
                   </span>
                 </div>
 
-                <div className="w-px h-8 bg-[#B2AC88]/30" />
+                <div className="w-px h-6 bg-[#B2AC88]/30" />
 
                 <div className={`flex flex-col ${isRtl ? "items-end" : "items-start"}`}>
                   <span
-                    className="text-sm font-bold text-[#2C2C2C]"
+                    className="text-xs font-bold text-[#2C2C2C]"
                     style={{ fontFamily: "Montserrat, sans-serif" }}
                   >
                     {t.reviewCount}
@@ -196,7 +228,7 @@ export default function Hero({ lang }: HeroProps) {
                   </span>
                 </div>
 
-                <div className="w-px h-8 bg-[#B2AC88]/30" />
+                <div className="w-px h-6 bg-[#B2AC88]/30" />
 
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -215,7 +247,7 @@ export default function Hero({ lang }: HeroProps) {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
+            transition={{ duration: 0.9, ease: "easeOut", delay: 0.12 }}
             className={`relative ${isRtl ? "lg:order-2" : "lg:order-1"}`}
           >
             {/* Decorative blob */}
@@ -233,52 +265,13 @@ export default function Hero({ lang }: HeroProps) {
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-
-              {/* Floating availability card */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 12 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ delay: 0.7, duration: 0.5, ease: "backOut" }}
-                className="absolute bottom-5 left-5 right-5 bg-white/90 backdrop-blur-md rounded-2xl p-4 shadow-xl"
-              >
-                <div
-                  className={`flex items-center justify-between gap-3 ${
-                    isRtl ? "flex-row-reverse" : ""
-                  }`}
-                >
-                  <div className={isRtl ? "text-right" : "text-left"}>
-                    <p
-                      className="text-xs text-[#708090] mb-0.5"
-                      style={{ fontFamily: "Montserrat, sans-serif" }}
-                    >
-                      {t.nextSlot}
-                    </p>
-                    <p
-                      className="text-sm font-bold text-[#2C2C2C]"
-                      style={{ fontFamily: "Frank Ruhl Libre, serif" }}
-                    >
-                      {t.nextTime}
-                    </p>
-                  </div>
-                  <a
-                    href="#booking"
-                    className="px-4 py-2 rounded-full text-xs font-semibold text-white whitespace-nowrap"
-                    style={{
-                      background: "linear-gradient(135deg, #B2AC88, #9A9470)",
-                      fontFamily: "Montserrat, sans-serif",
-                    }}
-                  >
-                    {t.bookBtn}
-                  </a>
-                </div>
-              </motion.div>
             </div>
           </motion.div>
         </div>
       </div>
 
       {/* Bottom fade-out */}
-      <div className="absolute bottom-0 inset-x-0 h-32 pointer-events-none bg-gradient-to-t from-[#FAFAF5] to-transparent" />
+      <div className="absolute bottom-0 inset-x-0 h-24 pointer-events-none bg-gradient-to-t from-[#FAFAF5] to-transparent" />
     </section>
   );
 }
